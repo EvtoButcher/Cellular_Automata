@@ -6,9 +6,9 @@
 ## B3/S23
 
 ## B1/S12345678
+![bandicam 2021-11-09 20-06-38-852 (online-video-cutter com)](https://user-images.githubusercontent.com/52111046/140975793-e1558fa6-8e9d-4783-bc56-0d2a868638b5.gif)
 
 ## Rule 30
-![bandicam 2021-11-09 20-06-38-852 (online-video-cutter com)](https://user-images.githubusercontent.com/52111046/140975793-e1558fa6-8e9d-4783-bc56-0d2a868638b5.gif)
 
 ## Rule 90
 ![bandicam 2021-11-09 20-04-18-758 (online-video-cutter com)](https://user-images.githubusercontent.com/52111046/140975116-1d2afdb3-9367-4716-ab51-9adb12a4c39e.gif)
