@@ -73,6 +73,7 @@ public:
 	void checkRules_1();
 	void checkRules_2();
 	void checkRules_3();
+	void checkRules_4();
 
 	// Step Game Function
 	void update();

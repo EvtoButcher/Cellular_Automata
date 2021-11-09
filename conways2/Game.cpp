@@ -66,7 +66,7 @@ void Game::mouseGenerate()
 	//	Generation[MousePosition.x][MousePosition.y] = OldGeneration[MousePosition.x][MousePosition.y] = true;
 	//}
 
-	if (rulesNamber == 2 || rulesNamber == 3) {
+	if (rulesNamber == 2 || rulesNamber == 3 || rulesNamber == 4) {
 	
 		if (menu.updateMenu_2() != 1) {
 			Generation[MousePosition.x][MousePosition.y] = OldGeneration[MousePosition.x][MousePosition.y] = true;
@@ -161,7 +161,9 @@ void Game::startMenu()
 	while (running()) {
 
 		//std::cout << "Menu: " << menu.updateMenu(this->Window) << " Menu_2: " <<menu.updateMenu_2() << std::endl;		
-		
+		//updateMousePositions();
+		//std::cout << "x " << MousePosition.x << "	y: " << MousePosition.y << std::endl;
+
 		choiceRules();
 
 		//Chose Menu		
@@ -186,8 +188,15 @@ void Game::startMenu()
 			if (menu.updateMenu_2() == 2) { break; }
 		}
 
+		if (menu.updateMenu(this->Window) == 4) {
+
+			if (menu.updateMenu_2() == 1) { centreTS(); break; }
+
+			if (menu.updateMenu_2() == 2) { break; }
+		}
+
+		//std::cout << "startMenu() is start" << std::endl;
 		
-		std::cout << "startMenu() is start" << std::endl;
 		//Render Menu
 		
 		renderMenu();
@@ -204,8 +213,10 @@ void Game::choiceRules()
 	if (menu.updateMenu(this->Window) == 1) { rulesNamber = 1; }
 	//B1
 	if (menu.updateMenu(this->Window) == 2) { rulesNamber = 2; }
-	//TS
+	//90
 	if (menu.updateMenu(this->Window) == 3) { rulesNamber = 3; }
+	//30
+	if (menu.updateMenu(this->Window) == 4) { rulesNamber = 4; }
 
 }
 
@@ -260,14 +271,29 @@ void Game::checkRules_2()
 void Game::checkRules_3()
 {
 	for (int y = 1; y < Game_h - 1; y++) {
+
 		for (int x = 1; x < Game_w - 1; x++) {
 
 			int cellsCount = GetCellsCount(x, y);
 
-			Generation[x][y+1] = OldGeneration[x - 1][y] ^ OldGeneration[x + 1][y];
+			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ OldGeneration[x + 1][y];
 		}
 	}
 }
+
+void Game::checkRules_4()
+{
+	for (int y = 1; y < Game_h - 1; y++) {
+
+		for (int x = 1; x < Game_w - 1; x++) {
+
+			int cellsCount = GetCellsCount(x, y);
+
+			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ (Generation[x][y] || OldGeneration[x + 1][y]); //left XOR (central OR right)
+		}
+	}
+}
+
 
 // Step Game Function///////////////////////////////
 
@@ -282,6 +308,8 @@ void Game::update()
 	if (rulesNamber == 2) { this->checkRules_2(); }
 
 	if (rulesNamber == 3) { this->checkRules_3(); }
+
+	if (rulesNamber == 4) { this->checkRules_4(); }
 
 }
 

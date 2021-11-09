@@ -14,8 +14,8 @@ private:
 	sf::Event menu_event;
 
 	// Texture Varibale
-	sf::Texture menuTexture1, menuTexture2, menuTexture3, modeTexture1, modeTexture2, modeTexture3;
-	sf::Sprite Auto, Draw, Exit, B3, B1, TS;
+	sf::Texture menuTexture1, menuTexture2, menuTexture3, modeTexture1, modeTexture2, modeTexture3, modeTexture4;
+	sf::Sprite Auto, Draw, Exit, B3, B1, T90, T30;
 
 	// Private Funcrion  
 	void initTexture();

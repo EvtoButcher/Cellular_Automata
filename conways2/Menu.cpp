@@ -10,25 +10,29 @@ void Menu::initTexture()
 	menuTexture3.loadFromFile("Pictures\\exit.png");
 	modeTexture1.loadFromFile("Pictures\\B3_S23.png");
 	modeTexture2.loadFromFile("Pictures\\B3_S(ALL).png");
-	modeTexture3.loadFromFile("Pictures\\TS.png");
+	modeTexture3.loadFromFile("Pictures\\90.png");
+	modeTexture4.loadFromFile("Pictures\\30.png");
 
 	Auto.setTexture(menuTexture1); 
 	Draw.setTexture(menuTexture2); 
-	Exit.setTexture(menuTexture3);
+	Exit.setTexture(menuTexture3); 
 	B3.setTexture(modeTexture1);
 	B1.setTexture(modeTexture2);
-	TS.setTexture(modeTexture3);
+	T90.setTexture(modeTexture3);
+	T30.setTexture(modeTexture4);
 
 	Auto.setPosition(50, -100);
 	Draw.setPosition(50, 20);
 	Exit.setPosition(50, 140);
 	B3.setPosition(50, -110);
 	B1.setPosition(200, -110);
-	TS.setPosition(-100, -110);
+	T90.setPosition(-100, -110);
+	T30.setPosition(350, -110);
 
 	B3.setColor(sf::Color(73, 123, 0));
 	B1.setColor(sf::Color(73, 123, 0));
-	TS.setColor(sf::Color(73, 123, 0));
+	T90.setColor(sf::Color(73, 123, 0));
+	T30.setColor(sf::Color(73, 123, 0));
 }
 
 // Constructers / Destructors///////////////////////
@@ -58,7 +62,7 @@ int Menu::updateMenu_2()
 
 int Menu::updateMenu(sf::RenderWindow* Window)
 {
-	while (Window->pollEvent(menu_event) ) {
+	while (Window->pollEvent(menu_event)) {
 
 		if (menu_event.type == sf::Event::Closed) { Window->close(); }
 
@@ -69,7 +73,9 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 
 			B1.setColor(sf::Color(73, 123, 0));
 
-			TS.setColor(sf::Color(73, 123, 0));
+			T90.setColor(sf::Color(73, 123, 0));
+
+			T30.setColor(sf::Color(73, 123, 0));
 
 			Rules = 1;
 
@@ -81,21 +87,38 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 
 			B3.setColor(sf::Color(73, 123, 0));
 
-			TS.setColor(sf::Color(73, 123, 0));
+			T90.setColor(sf::Color(73, 123, 0));
+
+			T30.setColor(sf::Color(73, 123, 0));
 
 			Rules = 2;
 		}
 
-		//TS
+		//90
 		if (sf::IntRect(100 * 5, 36 * 5, 110, 100).contains(sf::Mouse::getPosition(*Window)) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-			TS.setColor(sf::Color(129, 181, 54));
+			T90.setColor(sf::Color(129, 181, 54));
 
 			B3.setColor(sf::Color(73, 123, 0));
 
 			B1.setColor(sf::Color(73, 123, 0));
 
+			T30.setColor(sf::Color(73, 123, 0));
+
 			Rules = 3;
+		}
+
+		if (sf::IntRect(186 * 5, 36 * 5, 110, 100).contains(sf::Mouse::getPosition(*Window)) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+			T30.setColor(sf::Color(129, 181, 54));
+
+			B3.setColor(sf::Color(73, 123, 0));
+
+			B1.setColor(sf::Color(73, 123, 0));
+
+			T90.setColor(sf::Color(73, 123, 0));
+
+			Rules = 4;
 		}
 
 		//Auto
@@ -124,6 +147,7 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 		}
 		else { Draw.setColor(sf::Color(73, 123, 0)); }
 
+		//Exit
 		if (sf::IntRect(126 * 5, 109 * 5, 270, 100).contains(sf::Mouse::getPosition(*Window))) {
 
 			Exit.setColor(sf::Color(129, 181, 54));
@@ -133,6 +157,8 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 		else { Exit.setColor(sf::Color(73, 123, 0)); }
 	}
 
+	std::cout << Rules << std::endl;
+
 	return Rules;
 }
 
@@ -140,7 +166,8 @@ void Menu::renderMenu(sf::RenderTarget* Target)
 {
 	Target->draw(this->B3);
 	Target->draw(this->B1);
-	Target->draw(this->TS);
+	Target->draw(this->T90);
+	Target->draw(this->T30);
 	Target->draw(this->Auto);
 	Target->draw(this->Draw);
 	Target->draw(this->Exit);
