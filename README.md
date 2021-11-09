@@ -1,4 +1,4 @@
 # Cellular_Automata
 
 ## Start Menu
-!(1.png)
+!(C:\Users\byble\Desktop\С++\1.png)
