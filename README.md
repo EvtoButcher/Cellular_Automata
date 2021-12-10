@@ -10,7 +10,34 @@
 
 -Если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить в противном случае, если соседей меньше двух или больше трёх, клетка умирает.
 
-![image](https://user-images.githubusercontent.com/52111046/142525654-e765ce2c-6d9e-46b9-84df-0ad4306d7cec.png)
+void Game::checkRules_1()
+{
+	
+	for (int y = 0; y < Game_h; y++) {
+		for (int x = 0; x < Game_w; x++) {
+
+			int cellsCount = this->GetCellsCount(x, y);
+
+			if (OldGeneration[x][y] == false) {
+
+				if (cellsCount == 3) {
+
+					Generation[x][y] = true;
+
+				}
+			}
+			else {
+
+				if ((cellsCount < 2) || (cellsCount > 3)) {
+
+					Generation[x][y] = false;
+
+				}
+			}
+		}
+	}
+	
+}
 
 (Функция GetCellsCount(x, y) возвращяет количество живых клеток вокруг проверяемой клетки).
 
