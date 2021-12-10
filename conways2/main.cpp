@@ -7,17 +7,19 @@
 
 #include "Game.h"
 
+
 int main()
 {
-	srand(time(NULL));
 
+	srand(time(NULL));
+	
 	Game game;
 
 	//Chose Menu		
 	game.startMenu();
 
 	while (game.running()) {
-
+		
 		//Update
 		game.update();
 

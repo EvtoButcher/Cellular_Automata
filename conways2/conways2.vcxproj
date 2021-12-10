@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Release\Header.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Pictures\auto.png" />

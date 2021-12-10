@@ -1,4 +1,4 @@
-#pragma once
+#pragma GCC target("avx2")
 
 #include <SFML/Graphics.hpp>
 #include <time.h>
@@ -7,6 +7,7 @@
 #include <Windows.h>
 #include <iostream>
 
+
 class Menu
 {
 private:
@@ -14,8 +15,8 @@ private:
 	sf::Event menu_event;
 
 	// Texture Varibale
-	sf::Texture menuTexture1, menuTexture2, menuTexture3, modeTexture1, modeTexture2, modeTexture3, modeTexture4;
-	sf::Sprite Auto, Draw, Exit, B3, B1, T90, T30;
+	sf::Texture menuTexture1, menuTexture2, menuTexture3, modeTexture1, modeTexture2, modeTexture3, modeTexture4, antTrxture;
+	sf::Sprite Auto, Draw, Exit, B3, B1, T90, T30, aL;
 
 	// Private Funcrion  
 	void initTexture();

@@ -14,7 +14,7 @@ void Game::initWindow()
 
 	
 	this->Window = new sf::RenderWindow(this->Videomode, "Game of Life", sf::Style::Close);
-	this->Window->setFramerateLimit(22);
+	this->Window->setFramerateLimit(522);
 }
 
 void Game::initGameValrible()
@@ -115,7 +115,7 @@ void Game::Generate()
 
 void Game::centreGenerate()
 {
-	if(menu.updateMenu_2() == 1){ Generation[Game_w / 2][Game_h / 2] = OldGeneration[Game_w / 2][Game_h / 2] = true; }
+	 Generation[Game_w / 2][Game_h / 2] = OldGeneration[Game_w / 2][Game_h / 2] = true; 
 }
 
 void Game::centreTS()
@@ -140,6 +140,7 @@ int Game::GetCellsCount(int x, int y)
 	return GetCell(x - 1, y) + GetCell(x - 1, y - 1) + GetCell(x, y - 1) + GetCell(x + 1, y - 1) +
 		GetCell(x + 1, y) + GetCell(x + 1, y + 1) + GetCell(x, y + 1) + GetCell(x - 1, y + 1);
 }
+
 
 int Game::GetCell(int x, int y)
 {
@@ -195,6 +196,14 @@ void Game::startMenu()
 			if (menu.updateMenu_2() == 2) { break; }
 		}
 
+		if (menu.updateMenu(this->Window) == 5) {
+
+			centreGenerate();
+			break;
+
+			//if (menu.updateMenu_2() == 2) { break; }
+		}
+
 		//std::cout << "startMenu() is start" << std::endl;
 		
 		//Render Menu
@@ -217,6 +226,8 @@ void Game::choiceRules()
 	if (menu.updateMenu(this->Window) == 3) { rulesNamber = 3; }
 	//30
 	if (menu.updateMenu(this->Window) == 4) { rulesNamber = 4; }
+	//Ant
+	if (menu.updateMenu(this->Window) == 5) { rulesNamber = 5; }
 
 }
 
@@ -274,8 +285,6 @@ void Game::checkRules_3()
 
 		for (int x = 1; x < Game_w - 1; x++) {
 
-			int cellsCount = GetCellsCount(x, y);
-
 			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ OldGeneration[x + 1][y];
 		}
 	}
@@ -287,11 +296,9 @@ void Game::checkRules_4()
 
 		for (int x = 1; x < Game_w - 1; x++) {
 
-			int cellsCount = GetCellsCount(x, y);
-
 			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ (Generation[x][y] || OldGeneration[x + 1][y]); //left XOR (central OR right)
 		}
-	}
+	}  
 }
 
 
@@ -340,15 +347,18 @@ void Game::render()
 
 	//Draw objects
 
-	for (int y = 0; y < Game_h; y++) {
+	for (int y = 0; y < Game_h - 1; y++) {
 
-		for (int x = 0; x < Game_w; x++) {
+		for (int x = 0; x < Game_w - 1; x++) {
 
-			if (Generation[x][y]) {
+			if (rulesNamber != 5) {////////////////
 
-				this->rectangle.setPosition(x * CELL_SIZE, y * CELL_SIZE);
+				if (Generation[x][y]) {
 
-				this->Window->draw(rectangle);
+					this->rectangle.setPosition(x * CELL_SIZE, y * CELL_SIZE);
+
+					this->Window->draw(rectangle);
+				}
 			}
 		}
 	}

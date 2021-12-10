@@ -1,6 +1,5 @@
-#pragma once
-
 #include "Menu.h"
+
 
 #define WINDOW_WIDTH 1500 //1920 || 1500
 #define WINDOW_HEIGHT 1000 //1080 || 1000
@@ -58,10 +57,12 @@ public:
 	void centreTS();
 	void UpdateOldGeneration();
 
-	//Cells Functions
+	//Cells Functions //Ant
 
 	int GetCellsCount(int x, int y);
 	int GetCell(int x, int y);
+
+	//int GetAntCount(int x, int y);
 	
 	// Menu 
 	void startMenu();

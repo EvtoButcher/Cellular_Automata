@@ -1,6 +1,5 @@
 #include "Menu.h"
 
-
 //Privet functions//////////////////////////////////
 
 void Menu::initTexture()
@@ -77,6 +76,8 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 
 			T30.setColor(sf::Color(73, 123, 0));
 
+			aL.setColor(sf::Color(73, 123, 0));
+
 			Rules = 1;
 
 		}
@@ -90,6 +91,8 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 			T90.setColor(sf::Color(73, 123, 0));
 
 			T30.setColor(sf::Color(73, 123, 0));
+
+			aL.setColor(sf::Color(73, 123, 0));
 
 			Rules = 2;
 		}
@@ -105,9 +108,12 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 
 			T30.setColor(sf::Color(73, 123, 0));
 
+			aL.setColor(sf::Color(73, 123, 0));
+
 			Rules = 3;
 		}
 
+		//30
 		if (sf::IntRect(186 * 5, 36 * 5, 110, 100).contains(sf::Mouse::getPosition(*Window)) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
 			T30.setColor(sf::Color(129, 181, 54));
@@ -117,6 +123,8 @@ int Menu::updateMenu(sf::RenderWindow* Window)
 			B1.setColor(sf::Color(73, 123, 0));
 
 			T90.setColor(sf::Color(73, 123, 0));
+
+			aL.setColor(sf::Color(73, 123, 0));
 
 			Rules = 4;
 		}
