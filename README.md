@@ -13,7 +13,6 @@
 ```C++
 void Game::checkRules_1()
 {
-	
 	for (int y = 0; y < Game_h; y++) {
 		for (int x = 0; x < Game_w; x++) {
 
@@ -50,7 +49,26 @@ void Game::checkRules_1()
 -В пустой клетке, рядом с которой есть хотя бы одна живая клетка зарождается жизнь.
 -Клетка продолжает жить не зависимо от количества соседей.
 
-![image](https://user-images.githubusercontent.com/52111046/142526475-a68efc0c-6c66-4a8e-b2e3-41a3dface0f6.png)
+```C++
+void Game::checkRules_2()
+{
+	for (int y = 1; y < Game_h - 1; y++) {
+		for (int x = 1; x < Game_w - 1; x++) {
+
+			int cellsCount = GetCellsCount(x, y);
+
+			if (OldGeneration[x][y] == false) {
+
+				if (cellsCount == 1) {
+
+					Generation[x][y] = true;
+
+				}
+			}
+		}
+	}
+}
+```
 
 (Функция GetCellsCount(x, y) возвращяет количество живых клеток вокруг проверяемой клетки).
 
@@ -59,7 +77,20 @@ void Game::checkRules_1()
 ## Правило 30
 Элементарный клеточный автомат, то есть одномерный клеточный автомат с двумя состояниями, основанный на операции left XOR (central OR right).
 
-![image](https://user-images.githubusercontent.com/52111046/142520673-206e6551-6d99-409f-b891-b753e39b497a.png)
+```C++
+void Game::checkRules_4()
+{
+	for (int y = 1; y < Game_h - 1; y++) {
+
+		for (int x = 1; x < Game_w - 1; x++) {
+
+			int cellsCount = GetCellsCount(x, y);
+
+			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ (Generation[x][y] || OldGeneration[x + 1][y]); //left XOR (central OR right)
+		}
+	}  
+}
+```
 
 (y - использкется для переноса на следущую строку и в логике правила 30 не участвует).
 
@@ -68,7 +99,20 @@ void Game::checkRules_1()
 ## Правило 90 (треугольник Серпинского)
 Элементарный клеточный автомат, с двумя состояниями, основанный на функции XOR.
 
-![image](https://user-images.githubusercontent.com/52111046/142520048-69959ae6-82e5-451f-9732-7418ecf143e8.png)
+```C++
+void Game::checkRules_3()
+{
+	for (int y = 1; y < Game_h - 1; y++) {
+
+		for (int x = 1; x < Game_w - 1; x++) {
+
+			int cellsCount = GetCellsCount(x, y);
+
+			Generation[x][y + 1] = OldGeneration[x - 1][y] ^ OldGeneration[x + 1][y];
+		}
+	}
+}
+```
 
 (y - использкется для переноса на следущую строку и в логике правила 90 не участвует).
 
